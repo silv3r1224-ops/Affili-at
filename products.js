@@ -5,13 +5,13 @@ const allProducts = {
     {name:"IQOO Neo 10",img:"images/IQOOneo10.jpg",link:"https://amzn.to/45xvrbJ",desc:"iQOO Neo 10 (Titanium Chrome, 8GB RAM, 256GB Storage) | Snapdragon 8s Gen 4 Processor & SuperComputing Chip Q1 | 7000 mAh Battery | Segment’s Highest 144 FPS Gaming Smartphone."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
     {name:"Samsung Galaxy S23",img:"images/samsungs23.jpg",link:"https://amzn.to/4fzlmQ8",desc:"Samsung Galaxy S23 5G AI Smartphone (Phantom Black, 8GB, 256GB Storage)"},
-    {name:"OnePlus 11",img:"images/oneplus11.jpg",link:"#",desc:"Smooth and fast."}
+    {name:"OnePlus 11",img:"images/oneplus11.jpg",link:"https://amzn.to/4oAnKKr",desc:"OnePlus 11 5G (Titan Black, 8GB RAM, 128GB Storage)."}
   ],
   "Laptops": [
     {name:"MacBook Air M2",img:"images/macbook.jpg",link:"#",desc:"Lightweight powerful laptop."},
     {name:"Dell XPS 13",img:"images/dellxps.jpg",link:"https://amzn.to/45BQuKr",desc: "Dell XPS 13-9350 Laptop, AI Enabled Intel Core Ultra7 Processor 256V, 16GB, LPDDR5X, 512GB SSD, Intel Arc Graphics, 13\" (33.02cm) FHD+ Display, Win 11+MSO'21+McAfee 15 Month, Platinum Silver, 1.22Kg."},
     {name:"HP Spectre x360",img:"images/hpspectre.jpg",link:"#",desc:"Convertible laptop."},
-    {name:"Lenovo Yoga 9i",img:"images/yoga9i.jpg",link:"#",desc:"2-in-1 laptop."}
+    {name:"Lenovo Yoga 9i",img:"images/yoga9i.jpg",link:"https://amzn.to/3V8hZ9j",desc:"Lenovo Yoga Book 9 13th Gen Intel Evo Core i7 Dual 13.3\" 2.8K OLED Display(2x33.7cm) with Pen+Keyboard|16GB/1TB SSD/Win 11/Office 2021/5.0MP IR Camera/360 B&W Rotating Soundbar/Teal/1.34Kg,82YQ001DIN."}
   ],
   "Smartwatches": [
     {name:"Apple Watch Series 9",img:"images/applewatch.jpg",link:"#",desc:"Advanced health tracking."},
@@ -151,6 +151,7 @@ if (productList) {
     });
   }
 }
+
 
 
 
