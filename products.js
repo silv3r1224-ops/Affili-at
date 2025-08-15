@@ -9,7 +9,7 @@ const allProducts = {
   ],
   "Laptops": [
     {name:"MacBook Air M2",img:"images/macbook.jpg",link:"#",desc:"Lightweight powerful laptop."},
-    {name:"Dell XPS 13",img:"images/dellxps13.jpg",link:"#",desc:"Compact ultrabook."},
+    {name:"Dell XPS 13",img:"images/dellxps.jpg",link:"https://amzn.to/45BQuKr",desc:"Dell XPS 13-9350 Laptop, AI Enabled Intel Core Ultra7 Processor 256V, 16GB, LPDDR5X, 512GB SSD, Intel Arc Graphics, 13" (33.02cm) FHD+ Display, Win 11+MSO'21+McAfee 15 Month, Platinum Silver, 1.22Kg."},
     {name:"HP Spectre x360",img:"images/hpspectre.jpg",link:"#",desc:"Convertible laptop."},
     {name:"Lenovo Yoga 9i",img:"images/yoga9i.jpg",link:"#",desc:"2-in-1 laptop."}
   ],
@@ -151,4 +151,5 @@ if (productList) {
     });
   }
 }
+
 
