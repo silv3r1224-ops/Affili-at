@@ -3,11 +3,11 @@ const allProducts = {
   // --- Electronics ---
   "Phones": [
     {name:"IQOO Neo 10",img:"images/IQOOneo10.jpg",link:"https://amzn.to/45xvrbJ",desc:"iQOO Neo 10 (Titanium Chrome, 8GB RAM, 256GB Storage) | Snapdragon 8s Gen 4 Processor & SuperComputing Chip Q1 | 7000 mAh Battery | Segment’s Highest 144 FPS Gaming Smartphone."},
-    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"Redmi note 14 pro 5G",img:"images/redmin14pro.jpg",link:"https://amzn.to/47sCyET",desc:"Redmi Note 14 Pro 5G Champagne Gold 8GB RAM 256GB Storage|50 MP Sony Camera Setup|Corning Gorilla Glass Victus 2 | 1.5K 3D Curved AMOLED | Mediatek Dimensity 7300- Ultra | IP68 IP69."},
     {name:"Samsung Galaxy S23",img:"images/samsungs23.jpg",link:"https://amzn.to/4fzlmQ8",desc:"Samsung Galaxy S23 5G AI Smartphone (Phantom Black, 8GB, 256GB Storage)"},
     {name:"OnePlus 11",img:"images/oneplus11.jpg",link:"https://amzn.to/4oAnKKr",desc:"OnePlus 11 5G (Titan Black, 8GB RAM, 128GB Storage)."},
-    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
-    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"Google Pixel 9A",img:"images/pixel9a.jpg",link:"https://amzn.to/45BuvTI",desc:"Google Pixel 9A 5G (8GB RAM, 256GB Storage)."},
+    {name:"Nothing Phone 3A",img:"images/nth3a.jpg",link:"https://amzn.to/45whJWv",desc:"Nothing Phone (3a) Black 256GB 8GB RAM."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
@@ -163,6 +163,7 @@ if (productList) {
     });
   }
 }
+
 
 
 
