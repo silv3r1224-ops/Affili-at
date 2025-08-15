@@ -8,8 +8,8 @@ const allProducts = {
     {name:"OnePlus 11",img:"images/oneplus11.jpg",link:"https://amzn.to/4oAnKKr",desc:"OnePlus 11 5G (Titan Black, 8GB RAM, 128GB Storage)."},
     {name:"Google Pixel 9A",img:"images/pixel9a.jpg",link:"https://amzn.to/45BuvTI",desc:"Google Pixel 9A 5G (8GB RAM, 256GB Storage)."},
     {name:"Nothing Phone 3A",img:"images/nth3a.jpg",link:"https://amzn.to/45whJWv",desc:"Nothing Phone (3a) Black 256GB 8GB RAM."},
-    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
-    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"Nothing CMF Phone 2 Pro",img:"images/nthcmf2pro.jpg",link:"https://amzn.to/4oA9Ms8",desc:"CMF Phone 2 Pro (Light Green, 8GB RAM, 128GB Storage)."},
+    {name:"Vivo Y39 5G",img:"images/vivoy39.jpg",link:"https://amzn.to/45qARVO",desc:"Vivo Y39 5G (Ocean Blue, 8GB RAM, 256GB Storage) 50 MP + 2 MP Rear Camera | 8 MP Selfie Camera 16.9672 cm (6.68\" inch) Memory & SIM: 8GB RAM | 256GB internal memory 44W fast charging with 6500 mAh battery."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
@@ -163,6 +163,7 @@ if (productList) {
     });
   }
 }
+
 
 
 
