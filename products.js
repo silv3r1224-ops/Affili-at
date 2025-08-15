@@ -5,7 +5,19 @@ const allProducts = {
     {name:"IQOO Neo 10",img:"images/IQOOneo10.jpg",link:"https://amzn.to/45xvrbJ",desc:"iQOO Neo 10 (Titanium Chrome, 8GB RAM, 256GB Storage) | Snapdragon 8s Gen 4 Processor & SuperComputing Chip Q1 | 7000 mAh Battery | Segment’s Highest 144 FPS Gaming Smartphone."},
     {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
     {name:"Samsung Galaxy S23",img:"images/samsungs23.jpg",link:"https://amzn.to/4fzlmQ8",desc:"Samsung Galaxy S23 5G AI Smartphone (Phantom Black, 8GB, 256GB Storage)"},
-    {name:"OnePlus 11",img:"images/oneplus11.jpg",link:"https://amzn.to/4oAnKKr",desc:"OnePlus 11 5G (Titan Black, 8GB RAM, 128GB Storage)."}
+    {name:"OnePlus 11",img:"images/oneplus11.jpg",link:"https://amzn.to/4oAnKKr",desc:"OnePlus 11 5G (Titan Black, 8GB RAM, 128GB Storage)."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."},
+    {name:"iPhone 15",img:"images/iphone15.jpg",link:"#",desc:"Latest iPhone model."}
   ],
   "Laptops": [
     {name:"MacBook Air M2",img:"images/macbook.jpg",link:"#",desc:"Lightweight powerful laptop."},
@@ -151,6 +163,7 @@ if (productList) {
     });
   }
 }
+
 
 
 
