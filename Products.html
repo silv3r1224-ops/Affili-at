@@ -26,16 +26,8 @@
     <button id="back-btn" class="btn-outline" title="Back">← Back</button>
   </section>
 
-  <!-- Horizontal grid slider -->
-  <div class="product-slider-wrapper">
-    <button class="scroll-btn left-btn" onclick="scrollGrid(-1)">&#10094;</button>
-    
-    <div class="product-grid" id="product-list">
-      <!-- Products injected via products.js -->
-    </div>
-    
-    <button class="scroll-btn right-btn" onclick="scrollGrid(1)">&#10095;</button>
-  </div>
+  <!-- This same grid is used to render either subcategories OR products -->
+  <div id="product-list" class="grid grid-4"></div>
 </main>
 
 <footer class="site-footer">
