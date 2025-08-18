@@ -100,8 +100,7 @@ const allProducts = {
 
 };
 
-// URL Params & Rendering
-// =========================
+// ---- URL params & rendering ----
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get("category");
 const subcategory = urlParams.get("subcategory");
@@ -110,21 +109,24 @@ const search = urlParams.get("search");
 const productList = document.getElementById("product-list");
 const titleEl = document.getElementById("category-title");
 
-function setTitle(txt) {
-  if (titleEl) titleEl.textContent = txt;
-}
+function setTitle(txt) { if (titleEl) titleEl.textContent = txt; }
 
 if (productList) {
   productList.innerHTML = "";
   let productsToShow = [];
 
+  // Highest priority: explicit subcategory
   if (subcategory && allProducts[subcategory]) {
     productsToShow = allProducts[subcategory];
     setTitle(`${subcategory} — Products`);
-  } else if (category && allProducts[category]) {
+  }
+  // Next: category-level listing if data exists for that key (optional)
+  else if (category && allProducts[category]) {
     productsToShow = allProducts[category];
     setTitle(`${category} — Products`);
-  } else if (search) {
+  }
+  // Search across all subcategories
+  else if (search) {
     const q = search.toLowerCase();
     Object.entries(allProducts).forEach(([sub, arr]) => {
       arr.forEach(p => {
@@ -138,7 +140,9 @@ if (productList) {
       });
     });
     setTitle(`Search: "${search}"`);
-  } else {
+  }
+  // Fallback: show all
+  else {
     Object.values(allProducts).forEach(arr => productsToShow.push(...arr));
     setTitle("All Products");
   }
@@ -146,23 +150,6 @@ if (productList) {
   if (productsToShow.length === 0) {
     productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
   } else {
-    // Wrapper
-    const wrapper = document.createElement("div");
-    wrapper.className = "product-slider-wrapper";
-
-    // Scroll buttons
-    const leftBtn = document.createElement("button");
-    leftBtn.className = "scroll-btn left-btn";
-    leftBtn.innerHTML = "&#10094;";
-
-    const rightBtn = document.createElement("button");
-    rightBtn.className = "scroll-btn right-btn";
-    rightBtn.innerHTML = "&#10095;";
-
-    // Horizontal row
-    const row = document.createElement("div");
-    row.className = "product-row";
-
     productsToShow.forEach(p => {
       const div = document.createElement("div");
       div.className = "product-card";
@@ -170,22 +157,9 @@ if (productList) {
         <img src="${p.img}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p>${p.desc ?? ""}</p>
-        <a href="${p.link}" target="_blank" rel="noopener" class="buy-btn">Buy Now</a>
+        <a href="${p.link}" target="_blank" rel="noopener">Buy Now</a>
       `;
-      row.appendChild(div);
+      productList.appendChild(div);
     });
-
-    // Scroll events
-    leftBtn.addEventListener("click", () => {
-      row.scrollBy({ left: -300, behavior: "smooth" });
-    });
-    rightBtn.addEventListener("click", () => {
-      row.scrollBy({ left: 300, behavior: "smooth" });
-    });
-
-    wrapper.appendChild(leftBtn);
-    wrapper.appendChild(row);
-    wrapper.appendChild(rightBtn);
-    productList.appendChild(wrapper);
   }
 }
