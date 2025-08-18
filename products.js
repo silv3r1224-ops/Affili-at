@@ -120,7 +120,7 @@ if (productList) {
     productsToShow = allProducts[subcategory];
     setTitle(`${subcategory} — Products`);
   }
-  // Next: category-level listing if data exists for that key (optional)
+  // Next: category-level listing
   else if (category && allProducts[category]) {
     productsToShow = allProducts[category];
     setTitle(`${category} — Products`);
@@ -147,27 +147,49 @@ if (productList) {
     setTitle("All Products");
   }
 
- if (productsToShow.length === 0) {
-  productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
-} else {
-  // Create a scrollable row
-  const row = document.createElement("div");
-  row.className = "product-row";
+  if (productsToShow.length === 0) {
+    productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
+  } else {
+    // Create scroll container
+    const wrapper = document.createElement("div");
+    wrapper.className = "product-slider-wrapper";
 
-  productsToShow.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "product-card";
-    div.innerHTML = `
-      <img src="${p.img}" alt="${p.name}">
-      <h3>${p.name}</h3>
-      <p>${p.desc ?? ""}</p>
-      <a href="${p.link}" target="_blank" rel="noopener" class="buy-btn">Buy Now</a>
-    `;
-    row.appendChild(div);
-  });
+    // Left/right buttons
+    const leftBtn = document.createElement("button");
+    leftBtn.className = "scroll-btn left-btn";
+    leftBtn.innerHTML = "&#10094;"; // <
 
-  productList.appendChild(row);
-}
+    const rightBtn = document.createElement("button");
+    rightBtn.className = "scroll-btn right-btn";
+    rightBtn.innerHTML = "&#10095;"; // >
 
+    // Product row
+    const row = document.createElement("div");
+    row.className = "product-row";
+
+    productsToShow.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product-card";
+      div.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.desc ?? ""}</p>
+        <a href="${p.link}" target="_blank" rel="noopener" class="buy-btn">Buy Now</a>
+      `;
+      row.appendChild(div);
+    });
+
+    // Scroll buttons functionality
+    leftBtn.addEventListener("click", () => {
+      row.scrollBy({ left: -300, behavior: "smooth" });
+    });
+    rightBtn.addEventListener("click", () => {
+      row.scrollBy({ left: 300, behavior: "smooth" });
+    });
+
+    wrapper.appendChild(leftBtn);
+    wrapper.appendChild(row);
+    wrapper.appendChild(rightBtn);
+    productList.appendChild(wrapper);
   }
 }
