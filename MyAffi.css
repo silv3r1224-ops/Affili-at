@@ -98,7 +98,22 @@ h2 { font-size: 1.4rem; margin: 12px 0 14px; color: var(--accent); }
 .btn-outline:hover { background: rgba(255,255,255,.08); transform: translateY(-1px); }
 
 /* Grids */
-.grid { list-style: none; display: grid; gap: 18px; }
+.grid { 
+  list-style: none; 
+  display: grid; 
+  gap: 18px;
+
+  /* NEW: make products horizontally scrollable */
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(200px, 1fr);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+.grid::-webkit-scrollbar { display: none; }
+
+/* Always 4 per row */
 .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 /* Cards */
@@ -110,6 +125,7 @@ h2 { font-size: 1.4rem; margin: 12px 0 14px; color: var(--accent); }
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
   cursor: pointer;
   text-align: center;
+  scroll-snap-align: start;
 }
 .category-card:hover, .subcategory-card:hover, .product-card:hover {
   transform: translateY(-6px);
@@ -119,8 +135,8 @@ h2 { font-size: 1.4rem; margin: 12px 0 14px; color: var(--accent); }
 
 .category-card img, .subcategory-card img, .product-card img {
   width: 100%;
-  height: 200px;           /* maintains square-ish when container is 1fr */
-  aspect-ratio: 1 / 1;     /* square images */
+  height: 200px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -157,11 +173,13 @@ h2 { font-size: 1.4rem; margin: 12px 0 14px; color: var(--accent); }
 
 /* Responsive */
 @media (max-width: 1000px) {
-  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* KEEP 4 products but scrollable */
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .category-card img, .subcategory-card img, .product-card img { height: 220px; }
 }
 @media (max-width: 600px) {
-  .grid-4 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+  /* KEEP 4 products but scrollable */
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .site-header h1 { font-size: 1.5rem; }
   .top-nav a { margin: 6px 8px; }
   .category-card img, .subcategory-card img, .product-card img { height: 240px; }
