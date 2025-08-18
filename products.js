@@ -147,30 +147,27 @@ if (productList) {
     setTitle("All Products");
   }
 
-  if (productsToShow.length === 0) {
-    productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
-  } else {
-    productsToShow.forEach(p => {
-      const div = document.createElement("div");
-      div.className = "product-card";
-      div.innerHTML = `
-        <img src="${p.img}" alt="${p.name}">
-        <h3>${p.name}</h3>
-        <p>${p.desc ?? ""}</p>
-        <a href="${p.link}" target="_blank" rel="noopener">Buy Now</a>
-      `;
-      productList.appendChild(div);
-    });
-  }
+ if (productsToShow.length === 0) {
+  productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
+} else {
+  // Create a scrollable row
+  const row = document.createElement("div");
+  row.className = "product-row";
+
+  productsToShow.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "product-card";
+    div.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <p>${p.desc ?? ""}</p>
+      <a href="${p.link}" target="_blank" rel="noopener" class="buy-btn">Buy Now</a>
+    `;
+    row.appendChild(div);
+  });
+
+  productList.appendChild(row);
 }
 
-
-
-
-
-
-
-
-
-
-
+  }
+}
