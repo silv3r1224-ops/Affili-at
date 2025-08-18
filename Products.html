@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Products - Affili-at.</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Affili-at</title>
   <link rel="stylesheet" href="MyAffi.css">
-  <link rel="icon" href="favicon.ico">
 </head>
 <body>
-<header class="site-header">
-  <h1 id="category-title">Products</h1>
-  <nav class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="Products.html" class="active">Products</a>
-    <a href="ServiceFeedback.html">Feedback</a>
-    <a href="About.html">About</a>
-    <a href="Contact.html">Contact</a>
-  </nav>
-</header>
+  <!-- Header -->
+  <header class="site-header">
+    <h1>Affili-at</h1>
+    <nav class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="product.html" class="active">Products</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<main class="container">
-  <section id="search-section" class="search-wrap">
-    <input type="text" id="search-input" placeholder="Search products..." />
-    <button id="search-btn" class="btn">Search</button>
-    <button id="back-btn" class="btn-outline" title="Back">← Back</button>
-  </section>
+  <!-- Main -->
+  <div class="container">
+    <h2>Products</h2>
+    <div class="search-wrap">
+      <input type="text" id="search-input" placeholder="Search products...">
+      <button class="btn-outline" onclick="searchProducts()">Search</button>
+    </div>
 
-  <!-- Grid for products -->
-  <div id="product-list" class="grid grid-4"></div>
-</main>
+    <!-- Product List -->
+    <div id="product-list" class="grid-4"></div>
+  </div>
 
-<footer class="site-footer">
-  <p>&copy; 2025 Affili-at.</p>
-</footer>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2025 Affili-at. All rights reserved.</p>
+  </footer>
 
-<script src="MyAffi.js"></script>
-<script src="products.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
