@@ -26,8 +26,14 @@
     <button id="back-btn" class="btn-outline" title="Back">← Back</button>
   </section>
 
-  <!-- This same grid is used to render either subcategories OR products -->
-  <div id="product-list" class="grid grid-4"></div>
+  <!-- Horizontal scrollable product row -->
+  <section class="product-row">
+    <button class="scroll-btn left">❮</button>
+    <div id="product-list" class="scroll-container">
+      <!-- JS will inject products here -->
+    </div>
+    <button class="scroll-btn right">❯</button>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -36,5 +42,21 @@
 
 <script src="MyAffi.js"></script>
 <script src="products.js"></script>
+
+<script>
+  // Scroll buttons control
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".scroll-container");
+    const leftBtn = document.querySelector(".scroll-btn.left");
+    const rightBtn = document.querySelector(".scroll-btn.right");
+
+    leftBtn.addEventListener("click", () => {
+      container.scrollBy({ left: -container.offsetWidth, behavior: "smooth" });
+    });
+    rightBtn.addEventListener("click", () => {
+      container.scrollBy({ left: container.offsetWidth, behavior: "smooth" });
+    });
+  });
+</script>
 </body>
 </html>
