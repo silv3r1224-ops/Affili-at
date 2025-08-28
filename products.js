@@ -100,8 +100,7 @@ const allProducts = {
 
 };
 
-
-// Grab URL parameters to decide which products to show
+// Reading parameters from URL for category, subcategory or search filter
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get("category");
 const subcategory = urlParams.get("subcategory");
@@ -110,57 +109,52 @@ const search = urlParams.get("search");
 const productList = document.getElementById("product-list");
 const titleEl = document.getElementById("category-title");
 
-function setTitle(txt) {
-  if (titleEl) titleEl.textContent = txt;
+function setTitle(text) {
+  if (titleEl) titleEl.textContent = text;
 }
 
 if (productList) {
   productList.innerHTML = "";
   let productsToShow = [];
 
-  // Priority: if a subcategory param exists and matches
   if (subcategory && allProducts[subcategory]) {
     productsToShow = allProducts[subcategory];
     setTitle(`${subcategory} — Products`);
-  }
-  // Next, category-level display if exists (optional fallback)
-  else if (category && allProducts[category]) {
-    productsToShow = allProducts[category];
+  } else if (category) {
+    // if category param matches a subcategory key directly or you want to implement category grouping, handle here
+    productsToShow = [];
+    Object.entries(allProducts).forEach(([sub, prods]) => {
+      if (sub.toLowerCase() === category.toLowerCase()) {
+        productsToShow.push(...prods);
+      }
+    });
     setTitle(`${category} — Products`);
-  }
-  // Search param: search across all subcategories
-  else if (search) {
+  } else if (search) {
     const q = search.toLowerCase();
-    Object.entries(allProducts).forEach(([sub, arr]) => {
-      arr.forEach(p => {
-        if (
-          p.name.toLowerCase().includes(q) ||
-          (p.desc && p.desc.toLowerCase().includes(q)) ||
-          sub.toLowerCase().includes(q)
-        ) {
+    Object.entries(allProducts).forEach(([sub, prods]) => {
+      prods.forEach(p => {
+        if (p.name.toLowerCase().includes(q) || (p.desc && p.desc.toLowerCase().includes(q)) || sub.toLowerCase().includes(q)) {
           productsToShow.push(p);
         }
       });
     });
-    setTitle(`Search: "${search}"`);
-  }
-  // Default: show all products from all subcategories combined
-  else {
+    setTitle(`Search results for "${search}"`);
+  } else {
     Object.values(allProducts).forEach(arr => productsToShow.push(...arr));
     setTitle("All Products");
   }
 
   if (productsToShow.length === 0) {
-    productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
+    productList.innerHTML = `<p style="color:#fff;opacity:.9">No products found.</p>`;
   } else {
-    productsToShow.forEach(p => {
+    productsToShow.forEach(product => {
       const div = document.createElement("div");
       div.className = "product-card";
       div.innerHTML = `
-        <img src="${p.img}" alt="${p.name}">
-        <h3>${p.name}</h3>
-        <p>${p.desc ?? ""}</p>
-        <a href="${p.link}" target="_blank" rel="noopener">Buy Now</a>
+        <img src="${product.img}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p>${product.desc ?? ""}</p>
+        <a href="${product.link}" target="_blank" rel="noopener">Buy Now</a>
       `;
       productList.appendChild(div);
     });
