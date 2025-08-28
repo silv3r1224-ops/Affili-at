@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Products - Affili-at.</title>
   <link rel="stylesheet" href="MyAffi.css">
+  <link rel="icon" href="favicon.ico">
 </head>
 <body>
 <header class="site-header">
@@ -25,14 +26,15 @@
     <button id="back-btn" class="btn-outline" title="Back">← Back</button>
   </section>
 
-  <!-- PRODUCT GRID WITH MULTIPLE ROWS HORIZONTALLY SCROLLABLE -->
-  <div id="product-list"></div>
+  <!-- This same grid is used to render either subcategories OR products -->
+  <div id="product-list" class="grid grid-4"></div>
 </main>
 
 <footer class="site-footer">
   <p>&copy; 2025 Affili-at.</p>
 </footer>
 
+<script src="MyAffi.js"></script>
 <script src="products.js"></script>
 </body>
 </html>
