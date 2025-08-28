@@ -3,38 +3,451 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
-  <title>Feedback - Affili-at.</title>
+  <meta name="description" content="Share your feedback about Affili-at to help us improve our service">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Feedback - Affili-at</title>
   <link rel="stylesheet" href="MyAffi.css">
   <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
-  <h1>Service Feedback</h1>
-  <nav class="top-nav">
-    <a href="index.html">Home</a>
-    <a href="Products.html">Products</a>
-    <a href="ServiceFeedback.html" class="active">Feedback</a>
-    <a href="About.html">About</a>
-    <a href="Contact.html">Contact</a>
-  </nav>
+  <div class="header-container">
+    <div class="logo">
+      <h1>Affili-at</h1>
+    </div>
+    <nav class="top-nav" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="Products.html" class="nav-link">Products</a>
+      <a href="ServiceFeedback.html" class="nav-link active" aria-current="page">Feedback</a>
+      <a href="About.html" class="nav-link">About</a>
+      <a href="Contact.html" class="nav-link">Contact</a>
+    </nav>
+  </div>
 </header>
 
 <main class="container">
-  <!-- Mailto form -->
-  <form class="product-card" style="cursor:auto" 
-        action="mailto:chakmaarian@gmail.com" method="post" enctype="text/plain" onsubmit="alert('Thanks for your feedback!');">
-    <h3>Your Feedback</h3>
-    <p style="color:#b7c7e6">Tell us how we can improve.</p>
-    <textarea name="feedback" rows="6" style="width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,.15); background:rgba(0,0,0,.35); color:#eaf2ff; outline:none;" required></textarea>
-    <div style="margin-top:12px">
-      <button type="submit" class="btn">Submit</button>
+  <!-- Hero section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Your Feedback Matters</h1>
+      <p class="hero-subtitle">Help us improve your experience by sharing your thoughts and suggestions</p>
     </div>
-  </form>
+  </section>
+
+  <!-- Feedback form -->
+  <section class="feedback-section">
+    <div class="feedback-container">
+      <form id="feedback-form" class="feedback-form" novalidate>
+        <div class="form-header">
+          <h2 class="section-title">Share Your Experience</h2>
+          <p>We value your input and use it to make Affili-at better for everyone</p>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name <span class="required">*</span></label>
+          <input type="text" id="name" name="name" required aria-describedby="name-error">
+          <div id="name-error" class="error-message" role="alert"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required aria-describedby="email-error">
+          <div id="email-error" class="error-message" role="alert"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="rating">Overall Experience <span class="required">*</span></label>
+          <div class="rating-input">
+            <div class="stars" id="rating-stars" role="radiogroup" aria-label="Rating">
+              <span class="star" data-value="1" aria-label="1 star" role="radio" tabindex="0"></span>
+              <span class="star" data-value="2" aria-label="2 stars" role="radio" tabindex="0"></span>
+              <span class="star" data-value="3" aria-label="3 stars" role="radio" tabindex="0"></span>
+              <span class="star" data-value="4" aria-label="4 stars" role="radio" tabindex="0"></span>
+              <span class="star" data-value="5" aria-label="5 stars" role="radio" tabindex="0"></span>
+            </div>
+            <input type="hidden" id="rating" name="rating" required>
+            <div id="rating-error" class="error-message" role="alert"></div>
+            <div class="rating-text" id="rating-text">Tell us how you feel about our service</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-type">Feedback Type <span class="required">*</span></label>
+          <select id="feedback-type" name="feedback-type" required aria-describedby="feedback-type-error">
+            <option value="">Select a category</option>
+            <option value="suggestion">Suggestion for Improvement</option>
+            <option value="bug">Report a Bug</option>
+            <option value="praise">Positive Feedback</option>
+            <option value="feature">Feature Request</option>
+            <option value="other">Other</option>
+          </select>
+          <div id="feedback-type-error" class="error-message" role="alert"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Feedback <span class="required">*</span></label>
+          <textarea id="message" name="message" rows="6" placeholder="Please share your thoughts in detail. What do you like? What could be better? Any specific suggestions?" required aria-describedby="message-error"></textarea>
+          <div id="message-error" class="error-message" role="alert"></div>
+          <div class="char-count">0/500 characters</div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="share-experience" name="share-experience">
+            <span class="checkbox-text">I'm willing to participate in future user research to help improve Affili-at</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="newsletter" name="newsletter">
+            <span class="checkbox-text">Subscribe to our newsletter for updates and exclusive offers</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submit-btn">
+          <span id="submit-text">Submit Feedback</span>
+          <span id="submit-spinner" class="spinner" style="display: none;"></span>
+        </button>
+      </form>
+
+      <!-- Success message -->
+      <div id="success-message" class="success-message" role="alert" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <div>
+          <h3>Thank You for Your Feedback!</h3>
+          <p>Your input is invaluable to us. We'll review your suggestions and work on making Affili-at even better.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Benefits -->
+  <section class="benefits-section">
+    <h2 class="section-title">Why Your Feedback Matters</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <h3>Shape Our Future</h3>
+        <p>Your suggestions directly influence our product roadmap and feature development</p>
+      </div>
+      
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h3>Improve User Experience</h3>
+        <p>We use your insights to fix issues and create a smoother, more intuitive interface</p>
+      </div>
+      
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <h3>Build a Better Community</h3>
+        <p>Your voice helps create a platform that serves all our users more effectively</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section">
+    <h2 class="section-title">What Our Users Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-rating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+        </div>
+        <blockquote>
+          "I suggested adding price comparison features, and within two months, they implemented it! The team truly listens to user feedback."
+        </blockquote>
+        <cite>— Priya M., Frequent User</cite>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-rating">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon></svg>
+        </div>
+        <blockquote>
+          "After reporting a navigation issue, I received a personal response within 24 hours and a fix in the next update. Outstanding support!"
+        </blockquote>
+        <cite>— Arjun K., Affiliate Partner</cite>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
-  <p>&copy; 2025 My Affili-at.</p>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <h3>Affili-at</h3>
+      <p>Your trusted affiliate marketplace</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="Products.html">Products</a>
+        <a href="ServiceFeedback.html">Feedback</a>
+      </div>
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="About.html">About Us</a>
+        <a href="Contact.html">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="footer-column">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Affiliate Program</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="current-year">2025</span> Affili-at. All rights reserved.</p>
+  </div>
 </footer>
+
+<script>
+  // Set current year in footer
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+
+  // Star rating functionality
+  const stars = document.querySelectorAll('.star');
+  const ratingInput = document.getElementById('rating');
+  const ratingText = document.getElementById('rating-text');
+  
+  let selectedRating = 0;
+  
+  stars.forEach(star => {
+    star.addEventListener('click', function() {
+      selectedRating = parseInt(this.getAttribute('data-value'));
+      updateStars();
+      ratingInput.value = selectedRating;
+      
+      // Update rating text
+      const ratings = [
+        '', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'
+      ];
+      ratingText.textContent = ratings[selectedRating];
+    });
+    
+    star.addEventListener('mouseover', function() {
+      const hoverRating = parseInt(this.getAttribute('data-value'));
+      highlightStars(hoverRating);
+    });
+    
+    star.addEventListener('mouseout', function() {
+      updateStars();
+    });
+    
+    star.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectedRating = parseInt(this.getAttribute('data-value'));
+        updateStars();
+        ratingInput.value = selectedRating;
+        
+        const ratings = [
+          '', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'
+        ];
+        ratingText.textContent = ratings[selectedRating];
+      }
+    });
+  });
+  
+  function highlightStars(rating) {
+    stars.forEach(s => {
+      const value = parseInt(s.getAttribute('data-value'));
+      if (value <= rating) {
+        s.style.color = 'var(--accent)';
+      } else {
+        s.style.color = '';
+      }
+    });
+  }
+  
+  function updateStars() {
+    stars.forEach(s => {
+      const value = parseInt(s.getAttribute('data-value'));
+      if (value <= selectedRating) {
+        s.style.color = 'var(--accent)';
+      } else {
+        s.style.color = '';
+      }
+    });
+  }
+  
+  // Character counter for message
+  const messageInput = document.getElementById('message');
+  const charCount = document.querySelector('.char-count');
+  
+  messageInput.addEventListener('input', function() {
+    const count = this.value.length;
+    charCount.textContent = `${count}/500 characters`;
+    
+    if (count > 450) {
+      charCount.style.color = 'var(--accent)';
+    } else {
+      charCount.style.color = '';
+    }
+  });
+  
+  // Form validation and submission
+  const feedbackForm = document.getElementById('feedback-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const submitText = document.getElementById('submit-text');
+  const submitSpinner = document.getElementById('submit-spinner');
+  const successMessage = document.getElementById('success-message');
+
+  feedbackForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Validate form
+    let isValid = true;
+    
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(el => {
+      el.textContent = '';
+      el.style.display = 'none';
+    });
+    
+    // Get form values
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const rating = document.getElementById('rating').value;
+    const feedbackType = document.getElementById('feedback-type').value;
+    const message = document.getElementById('message').value.trim();
+    
+    // Validate name
+    if (name === '') {
+      showError('name-error', 'Please enter your name');
+      isValid = false;
+    }
+    
+    // Validate email
+    if (email === '') {
+      showError('email-error', 'Please enter your email address');
+      isValid = false;
+    } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+      showError('email-error', 'Please enter a valid email address');
+      isValid = false;
+    }
+    
+    // Validate rating
+    if (!rating) {
+      showError('rating-error', 'Please select a rating');
+      isValid = false;
+    }
+    
+    // Validate feedback type
+    if (!feedbackType) {
+      showError('feedback-type-error', 'Please select a feedback type');
+      isValid = false;
+    }
+    
+    // Validate message
+    if (message === '') {
+      showError('message-error', 'Please enter your feedback');
+      isValid = false;
+    } else if (message.length < 10) {
+      showError('message-error', 'Feedback must be at least 10 characters long');
+      isValid = false;
+    } else if (message.length > 500) {
+      showError('message-error', 'Feedback must be less than 500 characters');
+      isValid = false;
+    }
+    
+    if (!isValid) {
+      return;
+    }
+    
+    // Show loading state
+    submitText.style.display = 'none';
+    submitSpinner.style.display = 'inline-block';
+    submitBtn.disabled = true;
+    
+    // In a real application, this would send data to a server
+    // For this demo, we'll simulate a network request
+    setTimeout(() => {
+      // Hide form and show success message
+      feedbackForm.style.display = 'none';
+      successMessage.style.display = 'flex';
+      
+      // Reset button
+      submitText.style.display = 'inline';
+      submitSpinner.style.display = 'none';
+      submitBtn.disabled = false;
+    }, 1500);
+  });
+  
+  // Show error message
+  function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    errorElement.textContent = message;
+    errorElement.style.display = 'block';
+    
+    // Scroll to first error
+    if (document.getElementById(elementId.split('-')[0]).offsetParent !== null) {
+      document.getElementById(elementId.split('-')[0]).focus();
+    }
+  }
+  
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.altKey && e.key === 'h') {
+      document.querySelector('a[href="index.html"]').focus();
+    } else if (e.altKey && e.key === 'c') {
+      document.querySelector('a[href="Contact.html"]').focus();
+    }
+  });
+  
+  // Add page transition effect
+  document.body.classList.add('loaded');
+</script>
 </body>
 </html>
-
