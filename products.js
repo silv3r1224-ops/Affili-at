@@ -100,28 +100,34 @@ const allProducts = {
 
 };
 
-// Reading parameters from URL for category, subcategory or search filter
-const urlParams = new URLSearchParams(window.location.search);
-const category = urlParams.get("category");
-const subcategory = urlParams.get("subcategory");
-const search = urlParams.get("search");
+// Wait for DOM loaded to run the script
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const category = urlParams.get("category");
+  const subcategory = urlParams.get("subcategory");
+  const search = urlParams.get("search");
 
-const productList = document.getElementById("product-list");
-const titleEl = document.getElementById("category-title");
+  const productList = document.getElementById("product-list");
+  const titleEl = document.getElementById("category-title");
+  const searchInput = document.getElementById("search-input");
+  const searchBtn = document.getElementById("search-btn");
+  const backBtn = document.getElementById("back-btn");
 
-function setTitle(text) {
-  if (titleEl) titleEl.textContent = text;
-}
+  function setTitle(text) {
+    if (titleEl) titleEl.textContent = text;
+  }
 
-if (productList) {
-  productList.innerHTML = "";
+  if (!productList) {
+    console.error("Error: product-list container not found");
+    return;
+  }
+
   let productsToShow = [];
 
   if (subcategory && allProducts[subcategory]) {
     productsToShow = allProducts[subcategory];
     setTitle(`${subcategory} — Products`);
   } else if (category) {
-    // if category param matches a subcategory key directly or you want to implement category grouping, handle here
     productsToShow = [];
     Object.entries(allProducts).forEach(([sub, prods]) => {
       if (sub.toLowerCase() === category.toLowerCase()) {
@@ -145,18 +151,30 @@ if (productList) {
   }
 
   if (productsToShow.length === 0) {
-    productList.innerHTML = `<p style="color:#fff;opacity:.9">No products found.</p>`;
+    productList.innerHTML = `<p style="color:#fff;opacity:.9;">No products found.</p>`;
   } else {
-    productsToShow.forEach(product => {
-      const div = document.createElement("div");
-      div.className = "product-card";
-      div.innerHTML = `
-        <img src="${product.img}" alt="${product.name}">
+    productList.innerHTML = productsToShow.map(product => `
+      <div class="product-card">
+        <img src="${product.img}" alt="${product.name}" />
         <h3>${product.name}</h3>
         <p>${product.desc ?? ""}</p>
         <a href="${product.link}" target="_blank" rel="noopener">Buy Now</a>
-      `;
-      productList.appendChild(div);
+      </div>
+    `).join("");
+  }
+
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener("click", () => {
+      const query = searchInput.value.trim();
+      if (query.length) {
+        window.location.href = `Products.html?search=${encodeURIComponent(query)}`;
+      }
     });
   }
-}
+
+  if (backBtn) {
+    backBtn.addEventListener("click", () => {
+      window.history.back();
+    });
+  }
+});
