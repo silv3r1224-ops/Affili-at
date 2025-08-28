@@ -100,7 +100,8 @@ const allProducts = {
 
 };
 
-// ---- URL params & rendering ----
+
+// Grab URL parameters to decide which products to show
 const urlParams = new URLSearchParams(window.location.search);
 const category = urlParams.get("category");
 const subcategory = urlParams.get("subcategory");
@@ -109,23 +110,25 @@ const search = urlParams.get("search");
 const productList = document.getElementById("product-list");
 const titleEl = document.getElementById("category-title");
 
-function setTitle(txt) { if (titleEl) titleEl.textContent = txt; }
+function setTitle(txt) {
+  if (titleEl) titleEl.textContent = txt;
+}
 
 if (productList) {
   productList.innerHTML = "";
   let productsToShow = [];
 
-  // Highest priority: explicit subcategory
+  // Priority: if a subcategory param exists and matches
   if (subcategory && allProducts[subcategory]) {
     productsToShow = allProducts[subcategory];
     setTitle(`${subcategory} — Products`);
   }
-  // Next: category-level listing if data exists for that key (optional)
+  // Next, category-level display if exists (optional fallback)
   else if (category && allProducts[category]) {
     productsToShow = allProducts[category];
     setTitle(`${category} — Products`);
   }
-  // Search across all subcategories
+  // Search param: search across all subcategories
   else if (search) {
     const q = search.toLowerCase();
     Object.entries(allProducts).forEach(([sub, arr]) => {
@@ -141,7 +144,7 @@ if (productList) {
     });
     setTitle(`Search: "${search}"`);
   }
-  // Fallback: show all
+  // Default: show all products from all subcategories combined
   else {
     Object.values(allProducts).forEach(arr => productsToShow.push(...arr));
     setTitle("All Products");
