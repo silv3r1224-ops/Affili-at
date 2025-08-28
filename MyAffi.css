@@ -20,7 +20,7 @@ html, body {
   --shadow:       0 10px 30px rgba(0,0,0,0.45);
 }
 
-/* Body Background */
+/* Basic Body */
 body {
   font-family: "Poppins", system-ui, -apple-system, Arial, sans-serif;
   color: var(--text);
@@ -49,7 +49,7 @@ body {
   letter-spacing: .3px;
 }
 
-/* Top nav */
+/* Navigation */
 .top-nav {
   margin-top: 10px;
 }
@@ -85,7 +85,7 @@ h2 {
   color: var(--accent);
 }
 
-/* Search + Back */
+/* Search and Back button */
 .search-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -135,7 +135,7 @@ h2 {
   transform: translateY(-1px);
 }
 
-/* Category list: 4 cards per row, floating squares */
+/* Categories grid: floating cards 4 per row */
 #category-list {
   list-style: none;
   display: grid;
@@ -164,7 +164,7 @@ h2 {
 
 .category-card img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 12px;
   height: auto;
@@ -177,12 +177,12 @@ h2 {
   color: var(--accent);
 }
 
-/* Product grid: 6 rows, horizontal scroll, 4 products visible, slideable to next 2 */
+/* Products grid: 6 rows vertically, 4 columns visible, horizontal scroll for extra 2 columns */
 #product-list {
   display: grid;
-  grid-template-rows: repeat(6, 1fr);           /* 6 rows */
-  grid-auto-flow: column;                        /* flow in columns */
-  grid-auto-columns: calc(100% / 4);             /* 4 products visible horizontally */
+  grid-template-rows: repeat(6, 1fr);         /* 6 rows */
+  grid-auto-flow: column;                      /* fill columns horizontally */
+  grid-auto-columns: calc(100% / 4);           /* column width: 4 visible horizontally */
   gap: 12px 8px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -257,7 +257,7 @@ h2 {
   color: #cfd6e6;
 }
 
-/* Responsive */
+/* Responsive design */
 @media (max-width: 1000px) {
   #category-list {
     grid-template-columns: repeat(2, 1fr);
