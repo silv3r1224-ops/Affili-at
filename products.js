@@ -99,82 +99,66 @@ const allProducts = {
   ]
 
 };
+// ---- URL params & rendering ----
+const urlParams = new URLSearchParams(window.location.search);
+const category = urlParams.get("category");
+const subcategory = urlParams.get("subcategory");
+const search = urlParams.get("search");
 
-// Wait for DOM loaded to run the script
-document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get("category");
-  const subcategory = urlParams.get("subcategory");
-  const search = urlParams.get("search");
+const productList = document.getElementById("product-list");
+const titleEl = document.getElementById("category-title");
 
-  const productList = document.getElementById("product-list");
-  const titleEl = document.getElementById("category-title");
-  const searchInput = document.getElementById("search-input");
-  const searchBtn = document.getElementById("search-btn");
-  const backBtn = document.getElementById("back-btn");
+function setTitle(txt) { if (titleEl) titleEl.textContent = txt; }
 
-  function setTitle(text) {
-    if (titleEl) titleEl.textContent = text;
-  }
-
-  if (!productList) {
-    console.error("Error: product-list container not found");
-    return;
-  }
-
+if (productList) {
+  productList.innerHTML = "";
   let productsToShow = [];
 
+  // Highest priority: explicit subcategory
   if (subcategory && allProducts[subcategory]) {
     productsToShow = allProducts[subcategory];
     setTitle(`${subcategory} — Products`);
-  } else if (category) {
-    productsToShow = [];
-    Object.entries(allProducts).forEach(([sub, prods]) => {
-      if (sub.toLowerCase() === category.toLowerCase()) {
-        productsToShow.push(...prods);
-      }
-    });
+  }
+  // Next: category-level listing if data exists for that key (optional)
+  else if (category && allProducts[category]) {
+    productsToShow = allProducts[category];
     setTitle(`${category} — Products`);
-  } else if (search) {
+  }
+  // Search across all subcategories
+  else if (search) {
     const q = search.toLowerCase();
-    Object.entries(allProducts).forEach(([sub, prods]) => {
-      prods.forEach(p => {
-        if (p.name.toLowerCase().includes(q) || (p.desc && p.desc.toLowerCase().includes(q)) || sub.toLowerCase().includes(q)) {
+    Object.entries(allProducts).forEach(([sub, arr]) => {
+      arr.forEach(p => {
+        if (
+          p.name.toLowerCase().includes(q) ||
+          (p.desc && p.desc.toLowerCase().includes(q)) ||
+          sub.toLowerCase().includes(q)
+        ) {
           productsToShow.push(p);
         }
       });
     });
-    setTitle(`Search results for "${search}"`);
-  } else {
+    setTitle(`Search: "${search}"`);
+  }
+  // Fallback: show all
+  else {
     Object.values(allProducts).forEach(arr => productsToShow.push(...arr));
     setTitle("All Products");
   }
 
   if (productsToShow.length === 0) {
-    productList.innerHTML = `<p style="color:#fff;opacity:.9;">No products found.</p>`;
+    productList.innerHTML = "<p style='color:#fff;opacity:.9'>No products found.</p>";
   } else {
-    productList.innerHTML = productsToShow.map(product => `
-      <div class="product-card">
-        <img src="${product.img}" alt="${product.name}" />
-        <h3>${product.name}</h3>
-        <p>${product.desc ?? ""}</p>
-        <a href="${product.link}" target="_blank" rel="noopener">Buy Now</a>
-      </div>
-    `).join("");
-  }
-
-  if (searchBtn && searchInput) {
-    searchBtn.addEventListener("click", () => {
-      const query = searchInput.value.trim();
-      if (query.length) {
-        window.location.href = `Products.html?search=${encodeURIComponent(query)}`;
-      }
+    productsToShow.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product-card";
+      div.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.desc ?? ""}</p>
+        <a href="${p.link}" target="_blank" rel="noopener">Buy Now</a>
+      `;
+      productList.appendChild(div);
     });
   }
-
-  if (backBtn) {
-    backBtn.addEventListener("click", () => {
-      window.history.back();
-    });
-  }
-});
+}
